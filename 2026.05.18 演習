@@ -1,0 +1,84 @@
+●5月18日 演習
+chapter7
+基本問題
+
+1.B. サーバー側でJavaサーブレットに変換されて実行される
+
+2.B. <html><body><% out.print("Hello, JSP!"); %></body></html>
+
+3.B. <%@ include file="header.jsp" %>
+
+4.C. Java コード
+
+5.B. <%@ page import="java.util.ArrayList" %>
+
+6.B. <%! int count = 0; %>
+
+7.
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="../header.html" %>
+
+<%
+
+String name = "kanai";
+
+%>
+
+<p>こんにちは、<%=name %>さん！JSPの世界へようこそ。</p>
+
+<%@include file="../footer.html" %>
+
+
+応用問題
+1.D. service()
+
+2.C. 1 が表示される
+
+3.B. includeディレクティブ は コンパイル時、jsp:include は 実行時 に読み込まれる
+
+4.B. 5 + 10 = 15 5 * 10 = 50
+
+5.C. <h1>Header</h1> <footer>Copyright 2025</footer>
+
+統合問題
+
+・practice02.jsp
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="header.jsp" %>
+
+<%@page import="java.util.Date" %>
+
+<% out.println(new java.util.Date()); %>
+
+<p>現在の日付は、<%=new Date() %></p>
+
+
+・header.jsp
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Servlet/JSP Samples</title>
+</head>
+<body>
+
+
+
+chapter8
+1.
+D. null が表示される
+
+2.
+C. 実行時エラーが発生する
+
+3.
+C. サーバーのデフォルトエンコーディングが ISO-8859-1 のため
+
+4.
+D. コンパイルエラーが発生する
+
+5.
+D. header.jsp の内容と Hello JSP! が表示される
+
+6.途中
+
