@@ -1,0 +1,9 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="header.jsp" %>
+
+<%@page import="java.util.Date" %>
+
+<% out.println(new java.util.Date()); %>
+
+<p>現在の日付は、<%=new Date() %></p>
+
