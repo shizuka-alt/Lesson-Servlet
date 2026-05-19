@@ -1,0 +1,84 @@
+●5月19日 演習
+chapter9
+基礎１
+
+1.
+B. クライアント側には URL の変更が見えない
+
+2.
+C.
+RequestDispatcher rd = request.getRequestDispatcher("next.jsp");
+rd.forward(request, response);
+
+3.
+C. include を使うと、ヘッダーやフッターの共通化ができる
+
+4.
+C. sendRedirect を使うと、セッションスコープのデータは保持される
+
+5.
+B. <jsp:forward page="next.jsp" />
+
+
+基礎２
+index.jspからdone.jspに画面遷移
+
+
+・index.jsp
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="../WEB-INF/header.html" %>
+
+<p>商品名を入力してください。</p>
+<form action="/Servlet/chapter9/redirect02" method="post">
+<input type="text" name="user">
+<input type="submit" value="送信">
+</form>
+
+<%@include file="../WEB-INF/footer.html" %>
+
+・done.jsp
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="../WEB-INF/header.html" %>
+
+<% request.setCharacterEncoding("UTF-8"); %>
+<p>送信完了</p>
+
+<%@include file="../WEB-INF/footer.html" %>
+
+・Redirect02.java
+package chapter9;
+
+import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+
+@WebServlet(urlPatterns= {"/chapter9/redirect02"})
+public class Redirect02 extends HttpServlet {
+	
+	protected void doPost(
+		HttpServletRequest request, HttpServletResponse response
+	) throws ServletException, IOException {
+		response.sendRedirect("done.jsp");
+	}
+
+}
+
+
+応用１
+1.
+A. 200 OK
+
+2.
+A. できる
+
+3.
+C. 302
+
+4.
+B. sendRedirect
+
