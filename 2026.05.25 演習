@@ -1,0 +1,54 @@
+●5月25日 演習
+・NameInputServlet.java
+package n01;
+
+import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+@WebServlet(urlPatterns={"n01/name-input-servlet"})
+public class NameInputServlet extends HttpServlet {
+	
+	public void doPost(
+		HttpServletRequest request, HttpServletResponse response
+	) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String name=request.getParameter("name");
+		
+		HttpSession session=request.getSession();
+		session.setAttribute("name", name);
+		
+		response.sendRedirect("../output.jsp");
+	}
+
+}
+
+・input.jsp
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="../header.html" %>
+
+<form action="NameInputServlet" method="post">
+名前：<input type="text" name="name">
+<input type="submit" value="送信">
+</form>
+
+<%@ include file="../footer.html" %>
+
+・output.jsp
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="../header.html" %>
+
+<%
+String name = (String) session.getAttribute("name");
+%>
+
+<h1>こんにちは、<%= name %>さん</h1>
+
+<%@ include file="../footer.html" %>
+
+
