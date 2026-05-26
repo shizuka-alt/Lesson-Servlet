@@ -1,0 +1,50 @@
+●5月26日 演習
+chapter19
+基礎問題１
+・practice01-in.jsp
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="../WEB-INF/header.html" %>
+
+<%
+request.setCharacterEncoding("UTF-8");
+String notice = request.getParameter("notice");
+
+if (notice != null && !notice.isEmpty()) {
+	//↓アプリケーションスコープに保存
+	application.setAttribute("notice", notice);
+}
+%>
+
+<form action="practice01-in.jsp" method="post">
+
+<h1>お知らせを設定</h1>
+
+<% if (notice != null){ %>
+<p>お知らせが設定されました！</p>
+<% } %>
+
+<input type="text" name="notice">
+<input type="submit" value="設定">
+
+</form>
+
+<p><a href="practice01-out.jsp">お知らせを確認</a></p>
+
+<%@include file="../WEB-INF/footer.html" %>
+
+
+・practice01-out.jsp
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="../WEB-INF/header.html" %>
+
+
+<h1>現在のお知らせ</h1>
+
+<p>${empty applicationScope.notice ? "現在お知らせはありません" : applicationScope.notice}</p>
+
+
+<p><a href="practice01-in.jsp">お知らせを設定する</a></p>
+
+<%@include file="../WEB-INF/footer.html" %>
+
+
